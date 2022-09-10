@@ -75,6 +75,11 @@ function initialize(address _powerPlinsGen0, address _ingredientsERC1155,address
         __UUPSUpgradeable_init();
         __ERC721Holder_init();
         __ReentrancyGuard_init();
+        tokenIds1 = [1,2,3,4,5];
+        tokenIds2 = [6,7,8];
+        tokenIds3 = [9,10,11,12,13,14,15,16,17,18,19];
+        tokenIds4 = [20,21,22,23,24];
+        tokenIds5 = [25];
         ingredientTypes[1] = IngredientType({from:1,to:46,tokenIds:tokenIds1});
         ingredientTypes[2] = IngredientType({from:47,to:76,tokenIds:tokenIds2});
         ingredientTypes[3] = IngredientType({from:77,to:91,tokenIds:tokenIds3});
@@ -92,11 +97,11 @@ function initialize(address _powerPlinsGen0, address _ingredientsERC1155,address
     }
     mapping(uint => IngredientType) ingredientTypes;
 
-    uint[]  tokenIds1 = [1,2,3,4,5];
-    uint[]  tokenIds2 = [6,7,8];
-    uint[]  tokenIds3 = [9,10,11,12,13,14,15,16,17,18,19];
-    uint[]  tokenIds4 = [20,21,22,23,24];
-    uint[]  tokenIds5 = [25];
+    uint[]  tokenIds1;
+    uint[]  tokenIds2;
+    uint[]  tokenIds3; 
+    uint[]  tokenIds4;
+    uint[]  tokenIds5;
 
 
     function random(uint from, uint to) internal returns (uint) {
@@ -124,7 +129,7 @@ function initialize(address _powerPlinsGen0, address _ingredientsERC1155,address
         return ingredient.tokenIds[num-1];
     }
 
-    function getCategory(uint number) public view returns(uint){
+    function getCategory(uint number) internal view returns(uint){
         uint index = 0;
         for(uint i=1;i<=typeCount;i++){
             if(number >= ingredientTypes[i].from &&  number <= ingredientTypes[i].to){
